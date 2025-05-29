@@ -1,9 +1,14 @@
 // Require the necessary discord.js classes
 const fs = require('fs')
 const { Client, Intents, Collection } = require('discord.js');
-const { token } = require('./config.json');
 
-//const commands = require('./commands/${file}')
+let token;
+try {
+  token = require('./config.json').token;
+} catch (error) {
+  console.error("Error: Could not load config.json. Please ensure the file exists and is correctly formatted.");
+  process.exit(1);
+}
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
@@ -29,18 +34,6 @@ client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 	const command = client.commands.get(interaction.commandName);
 
-	/*
-	if (commandName === 'ping') {
-		await interaction.reply('Pong!');
-	} else if (commandName === 'server') {
-		await interaction.reply('Server info.');
-	}	else if (commandName === 'peng') {
-			await interaction.reply('peeng!');
-	} else if (commandName === 'user') {
-		await interaction.reply('User info.');
-	}
-*/
-	
 	if (!command) return;
 
 	try {
