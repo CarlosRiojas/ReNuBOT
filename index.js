@@ -100,18 +100,19 @@ client.once('ready', () => {
   			article.author ||
   			article.source ||
   				'News';
-
+// send the block of message to chat feed & scheduler
 			await channel.send(
 			`🗞 **${topic}**\n` +
 			`_${source}_\n` +
 			`${article.title}\n` +
-			`${article.link}`
+			`${article.link}` +
+      `🗞 for **${userId}**\n` 
 		);
       }
     } catch (err) {
       console.error('❌ Scheduler failed:', err);
     }
-  }, 60 * 60 * 1000); //  every 5 seconds (TESTING)
+  }, 60 * 60 * 1000); // three posts per user every hour
 });
 
 // ---- Login ----
