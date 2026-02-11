@@ -21,12 +21,12 @@ async function fetchRelevantArticles(topic, limit = 5) {
 
   let feeds = [];
 
-  // 1️⃣ curated feeds first
+  // curated feeds first
   if (rssSources[normalized]) {
     feeds = feeds.concat(rssSources[normalized]);
   }
 
-  // 2️⃣ generic fallback feeds
+  //generic fallback feeds
   feeds.push(getGoogleNewsRSS(topic));
   feeds.push(getNitterRSS(topic));
 
