@@ -10,7 +10,10 @@ const { token, newsChannelId } = require('./config.json');
 
 // ---- Discord client ----
 const client = new Client({
-  intents: [GatewayIntentBits.Guilds]
+  intents: [GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent
+  ]
 });
 
 // ---- Load slash commands ----
