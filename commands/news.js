@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { fetchRelevantArticle } = require('../rssFetcher');
+const { fetchRelevantArticles } = require('../rssFetcher');
 const { getNextTopic } = require('../userTopics');
 
 module.exports = {
@@ -21,7 +21,7 @@ module.exports = {
 
     await interaction.deferReply({ ephemeral: true });
 
-    const article = await fetchRelevantArticle(topic);
+    const [article] = await fetchRelevantArticles(topic, 1);
 
     if (!article || !article.link) {
       return interaction.editReply({
